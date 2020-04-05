@@ -1,10 +1,21 @@
+/*
+  File:	  Cart.java
+  Author: Mehlhase
+  Date:	  4/4/20
+  
+  Description: Contains the main logic of the program
+*/
 package main.java;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Cart {
+	/**
+	Class:	Cart
 
+	Description:  Contains logic for calculating tax, deal rates, totals and age-restriction of Alcohol purchases
+	*/
     protected int userAge;
     public List<Product> cart;
     public int cartStorage;

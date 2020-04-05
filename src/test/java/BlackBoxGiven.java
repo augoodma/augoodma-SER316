@@ -299,7 +299,7 @@ public class BlackBoxGiven {
 		// numDairy < 0
 	    equivTest17 = createCart(25);
 	    for (int i = 0; i < 1; i++) {
-	        equivTest17.RemoveItem(new Dairy());
+	        equivTest17.removeItem(new Dairy());
 	    }
 
 	    test17Expected = 0;
@@ -307,7 +307,7 @@ public class BlackBoxGiven {
 		// numMeat < 0
 	    equivTest18 = createCart(25);
 	    for (int i = 0; i < 2; i++) {
-	        equivTest18.RemoveItem(new Meat());
+	        equivTest18.removeItem(new Meat());
 	    }
 
 	    test18Expected = 0;
@@ -315,7 +315,7 @@ public class BlackBoxGiven {
 		// numProduce < 0
 	    equivTest19 = createCart(25);
 	    for (int i = 0; i < 1; i++) {
-	        equivTest19.RemoveItem(new Produce());
+	        equivTest19.removeItem(new Produce());
 	    }
 
 	    test19Expected = 0;
@@ -323,7 +323,7 @@ public class BlackBoxGiven {
 		// numAlcohol < 0
 	    equivTest20 = createCart(25);
 	    for (int i = 0; i < 3; i++) {
-	        equivTest20.RemoveItem(new Alcohol());
+	        equivTest20.removeItem(new Alcohol());
 	    }
 
 	    test20Expected = 0;
@@ -331,7 +331,7 @@ public class BlackBoxGiven {
 		// numFrozenFood < 0
 	    equivTest21 = createCart(25);
 	    for (int i = 0; i < 2; i++) {
-	        equivTest21.RemoveItem(new FrozenFood());
+	        equivTest21.removeItem(new FrozenFood());
 	    }
 
 	    test21Expected = 0;
@@ -339,7 +339,7 @@ public class BlackBoxGiven {
 		// numAlcohol == 1
 	    boundaryTest22 = createCart(25);
 	    for (int i = 0; i < 100; i++) {
-	    	boundaryTest22.RemoveItem(new Alcohol());
+	    	boundaryTest22.removeItem(new Alcohol());
 	    }
 
 	    test22Expected = 0;
@@ -397,7 +397,7 @@ public class BlackBoxGiven {
 	    // numProduce == 3
 	    boundaryTest30 = createCart(25);
 	    for (int i = 0; i < 300; i++) {
-	    	boundaryTest30.RemoveItem(new Produce());
+	    	boundaryTest30.removeItem(new Produce());
 	    }
 
 	    test30Expected = 0;
@@ -426,7 +426,7 @@ public class BlackBoxGiven {
 	    // numFrozenFood == 1
 	    boundaryTest34 = createCart(25);
 	    for (int i = 0; i < 20; i++) {
-	    	boundaryTest34.RemoveItem(new FrozenFood());
+	    	boundaryTest34.removeItem(new FrozenFood());
 	    }
 
 	    test34Expected = 0;
@@ -455,7 +455,7 @@ public class BlackBoxGiven {
 	    // numDairy == 1
 	    boundaryTest38 = createCart(25);
 	    for (int i = 0; i < 70; i++) {
-	    	boundaryTest38.RemoveItem(new Dairy());
+	    	boundaryTest38.removeItem(new Dairy());
 	    }
 
 	    test38Expected = 0;
@@ -484,7 +484,7 @@ public class BlackBoxGiven {
 	    // numMeat == 1
 	    boundaryTest42 = createCart(25);
 	    for (int i = 0; i < 200; i++) {
-	    	boundaryTest42.RemoveItem(new Meat());
+	    	boundaryTest42.removeItem(new Meat());
 	    }
 
 	    test42Expected = 0;
@@ -513,10 +513,10 @@ public class BlackBoxGiven {
 	    // numAlcohol == 1 && numFrozenFood == 1
 	    boundaryTest46 = createCart(25);
 	    for (int i = 0; i < 500; i++) {
-	    	boundaryTest46.RemoveItem(new Alcohol());
+	    	boundaryTest46.removeItem(new Alcohol());
 	    }
 	    for (int i = 0; i < 500; i++) {
-	    	boundaryTest46.RemoveItem(new FrozenFood());
+	    	boundaryTest46.removeItem(new FrozenFood());
 	    }
 
 	    test46Expected = 0;
