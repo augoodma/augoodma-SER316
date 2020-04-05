@@ -107,7 +107,7 @@ public class Cart {
                 return totalBT;
         }
         return newTotal;
-    }
+    } 
 
     public void addItem(Product newProduct) {
       cart.add(newProduct);
