@@ -4,7 +4,7 @@
   Date:	  4/4/20
   
   Description: Child class of Product for the purchase of Produce
-*/
+*/ 
 package main.java;
 /**
 Class:	Produce

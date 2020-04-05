@@ -3,7 +3,7 @@
   Author: Mehlhase
   Date:	  4/4/20
   
-  Description: Contains the main logic of the program
+  Description: Contains the main logic of the program 
 */
 package main.java;
 
@@ -89,9 +89,9 @@ public class Cart {
     }
 
     // Gets the tax based on state and the total
-    public double getTax(double totalBT, String twoLetterUSStateAbbreviation) {
+    public double getTax(double totalBT, String twoLetterState) {
         double newTotal = 0;
-        switch (twoLetterUSStateAbbreviation) {
+        switch (twoLetterState) {
             case "AZ":
                 newTotal = totalBT * .08;
                 break;
@@ -109,8 +109,8 @@ public class Cart {
         return newTotal;
     }
 
-    public void addItem(Product np) {
-      cart.add(np);
+    public void addItem(Product newProduct) {
+      cart.add(newProduct);
     }
 
     public boolean RemoveItem(Product productToRemove)

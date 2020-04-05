@@ -4,7 +4,7 @@
   Date:	  4/4/20
   
   Description: Exception class used to restrict the purchase of alcohol by a minor
-*/package main.java;
+*/package main.java; 
 /**
 Class:	UnderAgeException
 

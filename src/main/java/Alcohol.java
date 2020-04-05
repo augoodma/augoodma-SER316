@@ -4,7 +4,7 @@
   Date:	  4/4/20
   
   Description: Child class of Product for the purchase of Alcohol
-*/
+*/ 
 package main.java;
 /**
 Class:	Alcohol

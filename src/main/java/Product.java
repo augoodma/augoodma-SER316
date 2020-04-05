@@ -4,7 +4,7 @@
   Date:	  4/4/20
   
   Description: Parent class for all items that may be added to Cart
-*/
+*/ 
 package main.java;
 /**
 Class:	Product
