@@ -28,7 +28,65 @@ public class Cart {
      * @throws UnderAgeException
      */
     public double calcCost() throws UnderAgeException {
-        return 0; //implement me, will be important for assignment 4 (nothing to do here for assignment 3)
+    	double subTotal = 0;
+    	double total = 0;
+    	int alcoholCount = 0;
+    	int dairyCount = 0;
+    	int frozenFoodCount = 0;
+    	int meatCount = 0;
+    	int produceCount = 0;
+    	
+    	//determine amount of each item in cart
+    	for(int i = 0; i < cart.size(); i++) {
+    		if(cart.get(i).getClass().toString().equals(Alcohol.class.toString())) {
+    			alcoholCount++;
+    		}
+    		if(cart.get(i).getClass().toString().equals(Dairy.class.toString())) {
+    			dairyCount++;
+    		}
+    		if(cart.get(i).getClass().toString().equals(FrozenFood.class.toString())) {
+    			frozenFoodCount++;
+    		}
+    		if(cart.get(i).getClass().toString().equals(Meat.class.toString())) {
+    			meatCount++;
+    		}
+    		if(cart.get(i).getClass().toString().equals(Produce.class.toString())) {
+    			produceCount++;
+    		}
+    	}
+    	
+    	//if purchasing alcohol, check if legal age
+    	if(alcoholCount > 0 && this.userAge < 21) {
+    		throw new UnderAgeException("The buyer is a minor and cannot purchase alcohol.");
+    	}
+    	
+    	//calculate subtotals for each items type
+    	int alcoholCost = alcoholCount * 8;
+    	int dairyCost = dairyCount * 3;
+    	int frozenFoodCost = frozenFoodCount * 5;
+    	int meatCost = meatCount * 10;
+    	int produceCost = produceCount * 2;
+    	
+    	//calculate discounts:
+    	//produce discount
+    	int produceSavings = produceCount / 3;
+
+    	//alcohol & frozen food discount
+    	int affSavings = 0;
+    	if(alcoholCount > 0 && frozenFoodCount > 0) {
+    		if(alcoholCount > frozenFoodCount) {
+    			affSavings = frozenFoodCount * 3;
+    		}
+    		else {
+    			affSavings = alcoholCount * 3;
+    		}
+    	}
+    	//calculate subtotal
+    	subTotal = alcoholCost + dairyCost + frozenFoodCost + meatCost + produceCost - produceSavings - affSavings;
+
+    	//calculate grand total
+    	total = subTotal + getTax(subTotal, "AZ");
+    	return total;
     }
 
     // calculates how much was saved in the current shopping cart based on the deals, returns the saved amount
