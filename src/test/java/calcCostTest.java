@@ -2,52 +2,14 @@ package test.java;
 
 import main.java.*;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-
-import java.lang.reflect.Constructor;
-import java.util.Arrays;
-import java.util.Collection;
-
-import main.java.Cart;
-import main.java.Cart1;
-import main.java.Cart2;
-import main.java.Cart3;
-import main.java.Cart4;
-import main.java.Cart5;
-
 import static org.junit.Assert.*;
 
-@RunWith(Parameterized.class)
-public class BlackBoxGiven {
-
-    private Class<Cart> classUnderTest;
-
-    @SuppressWarnings("unchecked")
-    public BlackBoxGiven(Object classUnderTest) {
-        this.classUnderTest = (Class<Cart>) classUnderTest;
-    }
-
-    // Define all classes to be tested
-    @Parameterized.Parameters
-    public static Collection<Object[]> cartClassUnderTest() {
-        Object[][] classes = {
-            {Cart0.class},
-            {Cart1.class},
-            {Cart2.class},
-            {Cart3.class},
-            {Cart4.class},
-            {Cart5.class}
-        };
-        return Arrays.asList(classes);
-    }
+public class calcCostTest {
 
     private Cart createCart(int age) throws Exception {
-        Constructor<Cart> constructor = classUnderTest.getConstructor(Integer.TYPE);
-        return constructor.newInstance(age);
+    	Cart classUnderTest = new Cart(age);
+    	return classUnderTest;
     }
-
-    // A sample Cart
 
     Cart equivTest1;
     Cart equivTest2;
@@ -148,7 +110,6 @@ public class BlackBoxGiven {
     double test47Expected;
     double test48Expected;
     double test49Expected;
-
 
     @org.junit.Before
     public void setUp() throws Exception {

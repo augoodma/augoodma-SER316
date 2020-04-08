@@ -96,42 +96,57 @@ public class Cart {
         int subTotal = 0;
         int costAfterSavings = 0;
 
-        double produce_counter = 0;
+        int produce_counter = 0; //was double, changed to int
         int alcoholCounter = 0;
         int frozenFoodCounter = 0;
-        int dairyCounter = 0;
+        //int dairyCounter = 0; commented out since there is no discount with Dairy
+        int produceSavings = 0;
+        int affSavings = 0;       //a couple new variables to track savings
 
         for(int i = 0; i < cart.size(); i++) {
             subTotal += cart.get(i).getCost();
-            costAfterSavings =costAfterSavings+cart.get(i).getCost();
-
-            if (cart.get(i).getClass().toString() == Produce.class.toString()) {
+            //costAfterSavings = costAfterSavings+cart.get(i).getCost(); commented out, this should be calculated at the end
+            //first step is to just add up totals for each item type
+            if (cart.get(i).getClass().toString().equals(Produce.class.toString())) { //used .equals() since comparing Strings
                 produce_counter++;
 
-                if (produce_counter >= 3) {
-                    costAfterSavings -= 1;
-                    produce_counter = 0;
-                }
+                //if (produce_counter >= 3) {
+                //    costAfterSavings -= 1;
+                //    produce_counter = 0;
+                //}  commented out, this discount will be calculated at the end
             }
-            else if (cart.get(i).getClass().toString()==Alcohol.class.toString()) {
+            else if (cart.get(i).getClass().toString().equals(Alcohol.class.toString())) { //used .equals() since comparing Strings
                 alcoholCounter++;
                 if (userAge < 21) {
                     throw new UnderAgeException("The User is not of age to purchase alcohol!");
                 }
             }
-            else if (cart.get(i).getClass().toString() == FrozenFood.class.toString()) {
+            else if (cart.get(i).getClass().toString().equals(FrozenFood.class.toString())) { //used .equals() since comparing Strings
                 frozenFoodCounter++;
             }
-            else if (cart.get(i).getClass().toString() == FrozenFood.class.toString())
-                dairyCounter++;
+            //else if (cart.get(i).getClass().toString() == FrozenFood.class.toString()) commented out since there is no dairy discount
+            //    dairyCounter++;
 
-            if (alcoholCounter >= 1 && frozenFoodCounter >= 1) {
-                 costAfterSavings = costAfterSavings + 3;
-                 alcoholCounter--;
-                 frozenFoodCounter--;
-            }
+            //if (alcoholCounter >= 1 && frozenFoodCounter >= 1) {
+            //     costAfterSavings = costAfterSavings + 3;
+            //     alcoholCounter--;
+            //     frozenFoodCounter--;
+            //}  commented out, this discount will be calculated at the end
+        	//second step, calculate discounts:
+        	//produce discount
+        	produceSavings = produce_counter / 3;
+
+        	//alcohol & frozen food discount
+        	if(alcoholCounter > 0 && frozenFoodCounter > 0) {
+        		if(alcoholCounter > frozenFoodCounter) {
+        			affSavings = frozenFoodCounter * 3;
+        		}
+        		else {
+        			affSavings = alcoholCounter * 3;
+        		}
+        	}
         }
-
+        costAfterSavings = produceSavings + affSavings; // third step, calculate total savings and new subtotal
         return subTotal - costAfterSavings;
     }
 
@@ -147,11 +162,12 @@ public class Cart {
                 break;
             case "NY":
                 newTotal = totalBT * .1;
+                break;                    // <-added break statement
             case "CO":
                 newTotal = totalBT * .07;
                 break;
             default:
-                return totalBT;
+                return 0; //Change for any other to return 0 tax rather than original amount since other cases only return cost of tax
         }
         return newTotal;
     }
@@ -160,17 +176,15 @@ public class Cart {
       cart.add(np);
     }
 
-    public boolean RemoveItem(Product productToRemove)
-    {
-    		boolean test = false;
+    public boolean RemoveItem(Product productToRemove){ //fixed {} style
+    	boolean test = false;  //fixed whitespace
         for (int i = 0; i < cart.size(); i++) {
             if (cart.get(i) == productToRemove) {
                  cart.remove(i);
-                 test = true;
-                 return test;
+                 return !test;  //condensed code
             }
         }
-        return false;
+        return test;  //changed to variable rather than primitive
     }
 
     public Cart(int age) {
