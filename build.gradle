@@ -52,7 +52,3 @@ dependencies {
  //     html.enabled = true
  //   }
  // }
- 
-  test {
- 	exclude '**/BlackBoxGiven.class'
-}
