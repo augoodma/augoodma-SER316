@@ -20,8 +20,5 @@
 # Mac DS file
 .DS_Store
 
-<<<<<<< HEAD
-
-=======
->>>>>>> master
+*.properties
 /bin/
