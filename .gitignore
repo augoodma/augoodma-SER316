@@ -20,5 +20,7 @@
 # Mac DS file
 .DS_Store
 
-
+test {
+	exclude '**/BlackBoxGiven.class'
+}
 /bin/
