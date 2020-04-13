@@ -49,6 +49,7 @@ public class BlackBoxGiven {
 
     // A sample Cart
 
+<<<<<<< HEAD
     Cart equivTest1;
     Cart equivTest2;
     Cart equivTest3;
@@ -148,11 +149,16 @@ public class BlackBoxGiven {
     double test47Expected;
     double test48Expected;
     double test49Expected;
+=======
+    Cart cart1;
+    double cart1Expected;
+>>>>>>> master
 
 
     @org.junit.Before
     public void setUp() throws Exception {
 
+<<<<<<< HEAD
     	// numAlcohol > 0 && age < 21
         equivTest1 = createCart(18);
         for (int i = 0; i < 1; i++) {
@@ -844,5 +850,29 @@ public class BlackBoxGiven {
 	public void calcCost49() throws UnderAgeException {
 	    double amount = boundaryTest49.calcCost();
 	    assertEquals(test49Expected, amount, .01);
+=======
+        // all carts should be set up like this
+
+        // cart created with an age 40 shopper
+        cart1 = createCart(40);
+        for (int i = 0; i < 2; i++) {
+            cart1.addItem(new Alcohol());
+        }
+        for(int i = 0; i < 3; i++) {
+            cart1.addItem(new Dairy());
+        }
+        for(int i = 0; i < 4; i++) {
+            cart1.addItem(new Meat());
+        }
+
+        cart1Expected = 70.2;
+    }
+
+    // sample test
+    @Test
+    public void calcCostCart1() throws UnderAgeException {
+        double amount = cart1.calcCost();
+        assertEquals(cart1Expected, amount, .01);
+>>>>>>> master
     }
 }
