@@ -51,12 +51,8 @@ dependencies {
  //     xml.enabled = false
  //     html.enabled = true
  //   }
-<<<<<<< HEAD
  // }
 
 test {
 	exclude '**/BlackBoxGiven.class'
 }
-=======
- // }
->>>>>>> master
