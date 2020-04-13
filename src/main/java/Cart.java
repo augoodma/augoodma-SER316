@@ -28,7 +28,6 @@ public class Cart {
      * @throws UnderAgeException
      */
     public double calcCost() throws UnderAgeException {
-<<<<<<< HEAD
     	double subTotal = 0;
     	double total = 0;
     	int alcoholCount = 0;
@@ -88,9 +87,6 @@ public class Cart {
     	//calculate grand total
     	total = subTotal + getTax(subTotal, "AZ");
     	return total;
-=======
-        return 0; //implement me, will be important for assignment 4 (nothing to do here for assignment 3)
->>>>>>> master
     }
 
     // calculates how much was saved in the current shopping cart based on the deals, returns the saved amount
@@ -100,7 +96,6 @@ public class Cart {
         int subTotal = 0;
         int costAfterSavings = 0;
 
-<<<<<<< HEAD
         int produce_counter = 0; //was double, changed to int
         int alcoholCounter = 0;
         int frozenFoodCounter = 0;
@@ -121,32 +116,11 @@ public class Cart {
                 //}  commented out, this discount will be calculated at the end
             }
             else if (cart.get(i).getClass().toString().equals(Alcohol.class.toString())) { //used .equals() since comparing Strings
-=======
-        double produce_counter = 0;
-        int alcoholCounter = 0;
-        int frozenFoodCounter = 0;
-        int dairyCounter = 0;
-
-        for(int i = 0; i < cart.size(); i++) {
-            subTotal += cart.get(i).getCost();
-            costAfterSavings =costAfterSavings+cart.get(i).getCost();
-
-            if (cart.get(i).getClass().toString() == Produce.class.toString()) {
-                produce_counter++;
-
-                if (produce_counter >= 3) {
-                    costAfterSavings -= 1;
-                    produce_counter = 0;
-                }
-            }
-            else if (cart.get(i).getClass().toString()==Alcohol.class.toString()) {
->>>>>>> master
                 alcoholCounter++;
                 if (userAge < 21) {
                     throw new UnderAgeException("The User is not of age to purchase alcohol!");
                 }
             }
-<<<<<<< HEAD
             else if (cart.get(i).getClass().toString().equals(FrozenFood.class.toString())) { //used .equals() since comparing Strings
                 frozenFoodCounter++;
             }
@@ -173,21 +147,6 @@ public class Cart {
         	}
         }
         costAfterSavings = produceSavings + affSavings; // third step, calculate total savings and new subtotal
-=======
-            else if (cart.get(i).getClass().toString() == FrozenFood.class.toString()) {
-                frozenFoodCounter++;
-            }
-            else if (cart.get(i).getClass().toString() == FrozenFood.class.toString())
-                dairyCounter++;
-
-            if (alcoholCounter >= 1 && frozenFoodCounter >= 1) {
-                 costAfterSavings = costAfterSavings + 3;
-                 alcoholCounter--;
-                 frozenFoodCounter--;
-            }
-        }
-
->>>>>>> master
         return subTotal - costAfterSavings;
     }
 
@@ -203,19 +162,12 @@ public class Cart {
                 break;
             case "NY":
                 newTotal = totalBT * .1;
-<<<<<<< HEAD
                 break;                    // <-added break statement
-=======
->>>>>>> master
             case "CO":
                 newTotal = totalBT * .07;
                 break;
             default:
-<<<<<<< HEAD
                 return 0; //Change for any other to return 0 tax rather than original amount since other cases only return cost of tax
-=======
-                return totalBT;
->>>>>>> master
         }
         return newTotal;
     }
@@ -224,7 +176,6 @@ public class Cart {
       cart.add(np);
     }
 
-<<<<<<< HEAD
     public boolean RemoveItem(Product productToRemove){ //fixed {} style
     	boolean test = false;  //fixed whitespace
         for (int i = 0; i < cart.size(); i++) {
@@ -234,19 +185,6 @@ public class Cart {
             }
         }
         return test;  //changed to variable rather than primitive
-=======
-    public boolean RemoveItem(Product productToRemove)
-    {
-    		boolean test = false;
-        for (int i = 0; i < cart.size(); i++) {
-            if (cart.get(i) == productToRemove) {
-                 cart.remove(i);
-                 test = true;
-                 return test;
-            }
-        }
-        return false;
->>>>>>> master
     }
 
     public Cart(int age) {
