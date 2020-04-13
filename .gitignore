@@ -21,4 +21,4 @@
 .DS_Store
 
 /bin/
-/gradle/wrapper/gradle-wrapper.properties
+*.properties
