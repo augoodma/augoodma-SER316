@@ -1,11 +1,11 @@
-// plugins {
-//     id "com.github.spotbugs" version "3.0.0"
-//     id "checkstyle"
-// }
+plugins {
+    id "com.github.spotbugs" version "3.0.0"
+    id "checkstyle"
+}
 
 apply plugin: 'application'
 apply plugin: 'jacoco'
-
+//apply plugin: 'com.github.spotbugs'
 
 mainClassName = 'main.java.Main'
 
@@ -46,13 +46,12 @@ checkstyle {
 // Configure SpotBugs
 /////////////////////////////////////////////////////////////////////////
  // To generate an HTML report instead of XML
- // tasks.withType(com.github.spotbugs.SpotBugsTask) {
- //   reports {
- //     xml.enabled = false
- //     html.enabled = true
- //   }
- // }
-
-test {
-	exclude '**/BlackBoxGiven.class'
+tasks.withType(com.github.spotbugs.SpotBugsTask) {
+  reports {
+    xml.enabled = false
+    html.enabled = true
+  }
+}
+spotbugs { 
+    toolVersion = '4.0.1'
 }
