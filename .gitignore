@@ -1,5 +1,5 @@
 # Compiled class file
-*.class
+ *.class
 
 # Log file
 *.log
@@ -20,5 +20,4 @@
 # Mac DS file
 .DS_Store
 
-*.properties
 /bin/

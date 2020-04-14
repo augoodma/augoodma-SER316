@@ -12,6 +12,11 @@ Class:	Main
 Description:  Creates a sample system state with a Cart full of some Product
 */ 
 public class Main {
+    /**
+     * Main method.
+     * @param args given arguments
+     * @throws UnderAgeException thrown if underage
+     */
     public static void main(String[] args) throws UnderAgeException {
 
         // Instantiating some products
@@ -41,6 +46,6 @@ public class Main {
         cart.addItem(milk);
 
         System.out.println(cart.calcCost());
-        System.out.println(cart.Amount_saved());
+        System.out.println(cart.amountSaved());
     }
 }
