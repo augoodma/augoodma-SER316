@@ -1,5 +1,16 @@
+/*
+  File:	  Main.java
+  Author: Mehlhase
+  Date:	  4/4/20
+  
+  Description: Main class which generates a specific system state
+*/
 package main.java;
+/**
+Class:	Main
 
+Description:  Creates a sample system state with a Cart full of some Product
+*/ 
 public class Main {
     public static void main(String[] args) throws UnderAgeException {
 
