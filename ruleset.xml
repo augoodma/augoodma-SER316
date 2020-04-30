@@ -27,9 +27,19 @@
 	        <property name="minimum" value="30"/>
 	    </properties>
 	</rule>
-	<rule ref="category/java/design.xml/NPathComplexity">
-		<properties>
+  <rule ref="category/java/design.xml/NPathComplexity">
+    <properties>
         <property name="reportLevel" value="10"/>
+    </properties>
+</rule>
+  <rule ref="category/java/design.xml/ExcessiveParameterList">
+    <properties>
+        <property name="minimum" value="3"/>
+    </properties>
+</rule>
+  <rule ref="category/java/design.xml/AvoidDeeplyNestedIfStmts">
+    <properties>
+        <property name="problemDepth" value="3"/>
     </properties>
 </rule>
 <rule ref="category/java/bestpractices.xml/LooseCoupling" />
