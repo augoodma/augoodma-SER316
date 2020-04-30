@@ -19,6 +19,13 @@ public class Cart {
      */
     protected int userAge;
     public List<Product> cart;
+    double subTotal = 0;
+    double total = 0;
+    int alcoholCount = 0;
+    int dairyCount = 0;
+    int frozenFoodCount = 0;
+    int meatCount = 0;
+    int produceCount = 0;
     // public int cartStorage; SER316 TASK 2 SPOTBUGS FIX
 
     /**
@@ -34,31 +41,14 @@ public class Cart {
      * @throws UnderAgeException thrown if underage buying alcohol
      */
     public double calcCost() throws UnderAgeException {
-        double subTotal = 0;
-        double total = 0;
-        int alcoholCount = 0;
-        int dairyCount = 0;
-        int frozenFoodCount = 0;
-        int meatCount = 0;
-        int produceCount = 0;
 
-        // determine amount of each item in cart
-        for (int i = 0; i < cart.size(); i++) {
-            if (cart.get(i).getClass().toString().equals(Alcohol.class.toString())) {
-                alcoholCount++;
-            }
-            if (cart.get(i).getClass().toString().equals(Dairy.class.toString())) {
-                dairyCount++;
-            }
-            if (cart.get(i).getClass().toString().equals(FrozenFood.class.toString())) {
-                frozenFoodCount++;
-            }
-            if (cart.get(i).getClass().toString().equals(Meat.class.toString())) {
-                meatCount++;
-            }
-            if (cart.get(i).getClass().toString().equals(Produce.class.toString())) {
-                produceCount++;
-            }
+       // determine amount of each item in cart
+        for (Product product : cart) {
+            isAlcohol(product);
+            isDairy(product);
+            isFrozenFood(product);
+            isMeat(product);
+            isProduce(product);
         }
 
         // if purchasing alcohol, check if legal age
@@ -82,6 +72,36 @@ public class Cart {
         // calculate grand total
         total = subTotal + getAzTax(subTotal);
         return total;
+    }
+
+    private void isProduce(Product product) {
+        if(product.getClass().toString().equals(Produce.class.toString())) {
+            produceCount++;
+        }
+    }
+
+    private void isMeat(Product product) {
+        if(product.getClass().toString().equals(Meat.class.toString())) {
+            meatCount++;
+        }        
+    }
+
+    private void isFrozenFood(Product product) {
+        if(product.getClass().toString().equals(FrozenFood.class.toString())) {
+            frozenFoodCount++;
+        }        
+    }
+
+    private void isDairy(Product product) {
+        if(product.getClass().toString().equals(Dairy.class.toString())) {
+            dairyCount++;
+        }        
+    }
+
+    private void isAlcohol(Product product) {
+        if(product.getClass().toString().equals(Alcohol.class.toString())) {
+            alcoholCount++;
+        }        
     }
 
     /**

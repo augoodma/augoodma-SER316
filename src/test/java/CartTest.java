@@ -106,7 +106,6 @@ public class CartTest {
 
     Description: Node coverage by adding items to the cart to get each discount type
      * @throws UnderAgeException thrown if underage buying alcohol
-     */
     @Test
     public void testSet1Seq1() throws UnderAgeException {
         double amount = set1Seq1.amountSaved();
@@ -119,7 +118,6 @@ public class CartTest {
     Returns: void
 
     Description: Remaining node coverage by using UnderAgeException
-     */
     @Test(expected = UnderAgeException.class)
     public void testSet1Seq2() throws UnderAgeException {
         double amount = set1Seq2.amountSaved();
@@ -132,12 +130,12 @@ public class CartTest {
     Returns: void
 
     Description: Remaining edge not touched in other tests, by having 1 < Produce < 3
-     */
     @Test
     public void testSet2Seq1() throws UnderAgeException {
         double amount = set2Seq1.amountSaved();
         assertEquals(test21Expected, amount, .01);
     }
+     */
 
     /**Set 3, sequence 1.
     Method: test31Expected
