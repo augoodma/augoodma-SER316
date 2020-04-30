@@ -41,7 +41,6 @@ public class Cart {
      * @throws UnderAgeException thrown if underage buying alcohol
      */
     public double calcCost() throws UnderAgeException {
-
        // determine amount of each item in cart
         for (Product product : cart) {
             isAlcohol(product);
@@ -50,28 +49,27 @@ public class Cart {
             isMeat(product);
             isProduce(product);
         }
-
         // if purchasing alcohol, check if legal age
-        if (alcoholCount > 0 && this.userAge < 21) {
-            throw new UnderAgeException("The buyer is a minor and cannot purchase alcohol.");
-        }
-
+        underAge(alcoholCount);
         // calculate subtotals for each items type
         int alcoholCost = alcoholCount * 8;
         int dairyCost = dairyCount * 3;
         int frozenFoodCost = frozenFoodCount * 5;
         int meatCost = meatCount * 10;
         int produceCost = produceCount * 2;
-
         // calculate discounts:
         int amountSaved = amountSaved(produceCount, alcoholCount, frozenFoodCount);
-
         // calculate subtotal
         subTotal = alcoholCost + dairyCost + frozenFoodCost + meatCost + produceCost - amountSaved;
-
         // calculate grand total
         total = subTotal + getAzTax(subTotal);
         return total;
+    }
+
+    private void underAge(int alcoholCount2) throws UnderAgeException {
+        if (alcoholCount > 0 && this.userAge < 21) {
+            throw new UnderAgeException("The buyer is a minor and cannot purchase alcohol.");
+        }        
     }
 
     private void isProduce(Product product) {
@@ -116,7 +114,6 @@ public class Cart {
     public int amountSaved(int produceCount, int alcoholCount, int frozenFoodCount) {
         // produce discount
         int produceSavings = produceCount / 3;
-
         // alcohol & frozen food discount
         int affSavings = 0;
         if (alcoholCount > 0 && frozenFoodCount > 0) {
