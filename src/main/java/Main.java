@@ -46,6 +46,6 @@ public class Main {
         cart.addItem(milk);
 
         System.out.println(cart.calcCost());
-        System.out.println(cart.amountSaved());
+        //System.out.println(cart.amountSaved());
     }
 }

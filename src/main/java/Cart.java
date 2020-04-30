@@ -11,14 +11,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cart {
-	/**
-	Class:	Cart
-
-	Description:  Contains logic for calculating tax, deal rates, totals and age-restriction of Alcohol purchases
-	*/
+    /**
+     * Class: Cart
+     * 
+     * Description: Contains logic for calculating tax, deal rates, totals and
+     * age-restriction of Alcohol purchases
+     */
     protected int userAge;
     public List<Product> cart;
-    //public int cartStorage;       SER316 TASK 2 SPOTBUGS FIX
+    // public int cartStorage; SER316 TASK 2 SPOTBUGS FIX
 
     /**
      * Calculates the final cost after all savings and tax has been applied. Also
@@ -73,24 +74,13 @@ public class Cart {
         int produceCost = produceCount * 2;
 
         // calculate discounts:
-        // produce discount
-        int produceSavings = produceCount / 3;
+        int amountSaved = amountSaved(produceCount, alcoholCount, frozenFoodCount);
 
-        // alcohol & frozen food discount
-        int affSavings = 0;
-        if (alcoholCount > 0 && frozenFoodCount > 0) {
-            if (alcoholCount > frozenFoodCount) {
-                affSavings = frozenFoodCount * 3;
-            } else {
-                affSavings = alcoholCount * 3;
-            }
-        }
         // calculate subtotal
-        subTotal = alcoholCost + dairyCost + frozenFoodCost
-                + meatCost + produceCost - produceSavings - affSavings;
+        subTotal = alcoholCost + dairyCost + frozenFoodCost + meatCost + produceCost - amountSaved;
 
         // calculate grand total
-        total = subTotal + getTax(subTotal, "AZ");
+        total = subTotal + getAzTax(subTotal);
         return total;
     }
 
@@ -103,67 +93,64 @@ public class Cart {
      * @return int
      * @throws UnderAgeException thrown if underage buying alcohol
      */
-    public int amountSaved() throws UnderAgeException {
-        int subTotal = 0;
-        int costAfterSavings = 0;
+    public int amountSaved(int produceCount, int alcoholCount, int frozenFoodCount) {
+        // produce discount
+        int produceSavings = produceCount / 3;
 
-        int produceCounter = 0; // was double, changed to int
-        int alcoholCounter = 0;
-        int frozenFoodCounter = 0;
-        // int dairyCounter = 0; commented out since there is no discount with Dairy
-        int produceSavings = 0;
-        int affSavings = 0; // a couple new variables to track savings
-
-        for (int i = 0; i < cart.size(); i++) {
-            subTotal += cart.get(i).getCost();
-            if (cart.get(i).getClass().toString().equals(Produce.class.toString())) {
-                produceCounter++;
-            } else if (cart.get(i).getClass().toString().equals(Alcohol.class.toString())) {
-                alcoholCounter++;
-                if (userAge < 21) {
-                    throw new UnderAgeException("The User is not of age to purchase alcohol!");
-                }
-            } else if (cart.get(i).getClass().toString().equals(FrozenFood.class.toString())) {
-                frozenFoodCounter++;
-            }
-            produceSavings = produceCounter / 3;
-            // alcohol & frozen food discount
-            if (alcoholCounter > 0 && frozenFoodCounter > 0) {
-                if (alcoholCounter > frozenFoodCounter) {
-                    affSavings = frozenFoodCounter * 3;
-                } else {
-                    affSavings = alcoholCounter * 3;
-                }
+        // alcohol & frozen food discount
+        int affSavings = 0;
+        if (alcoholCount > 0 && frozenFoodCount > 0) {
+            if (alcoholCount > frozenFoodCount) {
+                affSavings = frozenFoodCount * 3;
+            } else {
+                affSavings = alcoholCount * 3;
             }
         }
-        costAfterSavings = produceSavings + affSavings;
-        return subTotal - costAfterSavings;
+        int amountSaved = produceSavings + affSavings;
+        return amountSaved;
     }
 
-    /** Gets the tax based on state and the total.
+    /**
+     * Gets Arizona tax based on the total.
      *
      * @param totalBt total before taxes
-     * @param twoLetterStateAbbreviation standard two letter state abbreviation
      * @return double
      */
-    public double getTax(double totalBt, String twoLetterStateAbbreviation) {
-        double newTotal = 0;
-        switch (twoLetterStateAbbreviation) {
-            case "AZ":
-                newTotal = totalBt * .08;
-                break;
-            case "CA":
-                newTotal = totalBt * .09;
-                break;
-            case "NY":
-                newTotal = totalBt * .1;
-                break; // <-added break statement
-            case "CO":
-                newTotal = totalBt * .07;
-                break;
-            default:
-                return 0;
-        }
+    public double getAzTax(double totalBt) {
+        double newTotal = totalBt * .08;
+        return newTotal;
+    }
+
+    /**
+     * Gets California tax based on the total.
+     *
+     * @param totalBt total before taxes
+     * @return double
+     */
+    public double getCaTax(double totalBt) {
+        double newTotal = totalBt * .09;
+        return newTotal;
+    }
+
+    /**
+     * Gets New York tax based on the total.
+     *
+     * @param totalBt total before taxes
+     * @return double
+     */
+    public double getNyTax(double totalBt) {
+        double newTotal = totalBt * .1;
+        return newTotal;
+    }
+
+    /**
+     * Gets Colorado tax based on the total.
+     *
+     * @param totalBt total before taxes
+     * @return double
+     */
+    public double getCoTax(double totalBt) {
+        double newTotal = totalBt * .07;
         return newTotal;
     }
 
@@ -173,6 +160,7 @@ public class Cart {
 
     /**
      * Removes given product from cart.
+     * 
      * @param productToRemove name of unwanted product
      * @return boolean
      */

@@ -4,12 +4,19 @@ import java.lang.reflect.Constructor;
 import java.util.Arrays;
 import java.util.Collection;
 
+import main.java.Alcohol;
+import main.java.Cart;
 import main.java.Cart0;
 import main.java.Cart1;
 import main.java.Cart2;
 import main.java.Cart3;
 import main.java.Cart4;
 import main.java.Cart5;
+import main.java.Dairy;
+import main.java.FrozenFood;
+import main.java.Meat;
+import main.java.Produce;
+import main.java.UnderAgeException;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

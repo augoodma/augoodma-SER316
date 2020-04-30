@@ -148,7 +148,7 @@ public class CartTest {
      */
     @Test
     public void test31Expected() throws UnderAgeException {
-        double amount = getTaxTest.getTax(costOfMeat, az);
+        double amount = getTaxTest.getAzTax(costOfMeat);
         assertEquals(test31Expected, amount, .01);
     }
 
@@ -161,7 +161,7 @@ public class CartTest {
      */
     @Test
     public void test32Expected() throws UnderAgeException {
-        double amount = getTaxTest.getTax(costOfMeat, ca);
+        double amount = getTaxTest.getCaTax(costOfMeat);
         assertEquals(test32Expected, amount, .01);
     }
 
@@ -174,7 +174,7 @@ public class CartTest {
      */
     @Test
     public void test33Expected() throws UnderAgeException {
-        double amount = getTaxTest.getTax(costOfMeat, ny);
+        double amount = getTaxTest.getNyTax(costOfMeat);
         assertEquals(test33Expected, amount, .01);
     }
 
@@ -187,7 +187,7 @@ public class CartTest {
      */
     @Test
     public void test34Expected() throws UnderAgeException {
-        double amount = getTaxTest.getTax(costOfMeat, co);
+        double amount = getTaxTest.getCoTax(costOfMeat);
         assertEquals(test34Expected, amount, .01);
     }
 
@@ -197,12 +197,12 @@ public class CartTest {
     Returns: void
 
     Description: Test case "OR" (any other state)
-     */
     @Test
     public void test35Expected() throws UnderAgeException {
         double amount = getTaxTest.getTax(costOfMeat, or);
         assertEquals(test35Expected, amount, .01);
     }
+     */
 
     /**Set 4, sequence 1.
     Method: test41Expected
